@@ -1,13 +1,9 @@
+# api/urls.py
 from django.urls import path
-from .views import UserView
-from .views import UserDetailView
-from .views import OrderView
-from .views import OrderDetailView
-from .views import CartItem
+from .views import UserViewSet, OrderViewSet, CartItemViewSet
 
 urlpatterns = [
-    path('users', UserView.as_view(), name='users'),
-    path('users/<uuid:user_id>', UserDetailView.as_view(), name='user_detail'),
-    path('orders', OrderView.as_view(), name='orders'),
-    path('cart-items', CartItemview.as_view(), name='cart-items'),
+    path('users/', UserViewSet.as_view({'get': 'list', 'post': 'create'}), name='user-list'),
+    path('orders/', OrderViewSet.as_view({'get': 'list', 'post': 'create'}), name='order-list'),
+    path('cart-items/', CartItemViewSet.as_view({'get': 'list', 'post': 'create'}), name='cartitem-list'),
 ]
